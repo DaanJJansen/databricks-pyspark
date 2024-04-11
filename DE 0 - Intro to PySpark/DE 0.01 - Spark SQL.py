@@ -71,12 +71,16 @@
 
 # COMMAND ----------
 
-display(spark
+dataframe = (spark
         .table("products")
         .select("name", "price")
         .where("price < 200")
-        .orderBy("price")
-       )
+        .orderBy("price"))
+       
+
+# COMMAND ----------
+
+display(dataframe)
 
 # COMMAND ----------
 
@@ -137,6 +141,18 @@ spark
 # COMMAND ----------
 
 products_df = spark.table("products")
+
+# COMMAND ----------
+
+products_df.where("price < 200")
+
+# COMMAND ----------
+
+products_df.show()
+
+# COMMAND ----------
+
+products_df.explain()
 
 # COMMAND ----------
 
@@ -323,6 +339,15 @@ budget_df.collect()
 # COMMAND ----------
 
 budget_df.createOrReplaceTempView("budget")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select * from budget;
+
+# COMMAND ----------
+
+_sqldf.collect()
 
 # COMMAND ----------
 
